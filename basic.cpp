@@ -1,18 +1,14 @@
 #include <iostream>
-#include <string>
+
+const double pi = 3.1415926;
+const char newline = '\t';
 
 int main() {
-  int a=5;
-  int b(3);
-  int c{2};
-  int result;
-  std::string mystring;
+  double r = 5.0;
+  double circle;
 
-  a = a + b;
-  result = a - c;
-
-  mystring = "This is a string";
-  
-  std::cout << mystring << std::endl;
+  circle = 2 * pi * r;
+  std::cout << circle;
+  std::cout << newline;
   return 0;
 }
