@@ -4,7 +4,9 @@
 #define NEWLINE '\t'
 
 int main() {
-  double r = 5.0;
+  int r;
+  std::cin >> r;
+  
   double circle;
 
   circle = 2 * PI * r;
