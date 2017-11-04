@@ -1,4 +1,5 @@
 #include <iostream>
+#include <string>
 
 int main() {
   int n = 10;
@@ -7,6 +8,13 @@ int main() {
     std::cout << n << ", ";
     --n;
   }
-
   std::cout << "liftoff!\n";
+  
+  std::string str = "Hello!";
+  for (char c : str) {
+    std::cout << "[" << c << "]";
+  }
+  std::cout << "\n";
+
+  return 0;
 }
