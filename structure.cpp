@@ -45,6 +45,33 @@ S fixed_multiply (S val) {
   return val * N;
 }
 
+void scopes () {
+  int x = 10;
+  int y = 20;
+  {
+    // inner scope.
+    int x;
+    x = 50;
+    y = 50;
+    std::cout << "inner block: \n";
+    std::cout << "x: " << x << "\n";
+    std::cout << "y: " << y << "\n";
+  }
+  std::cout << "outer block: \n";
+  std::cout << "x: " << x << "\n";
+  std::cout << "y: " << y << "\n";
+}
+
+namespace first {
+  int xx = 5;
+  int yy = 10;
+}
+
+namespace second {
+  double xx = 3.1416;
+  double yy = 2.7183;
+}
+
 int main() {
   int x = 1, y = 3, z = 7;
   duplicate(x, y, z);
@@ -64,6 +91,15 @@ int main() {
 
   std::cout << fixed_multiply<int, 2>(10) << "\n";
   std::cout << fixed_multiply<int, 3>(10) << "\n";
+
+  scopes();
+
+  using first::xx;
+  using second::yy;
+  std::cout << xx << "\n";
+  std::cout << yy << "\n";
+  std::cout << first::yy << "\n";
+  std::cout << second::xx << "\n";
   
   return 0;
 }
