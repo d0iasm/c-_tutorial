@@ -40,6 +40,11 @@ T sum (T a, T b) {
   return result;
 }
 
+template <class S, int N>
+S fixed_multiply (S val) {
+  return val * N;
+}
+
 int main() {
   int x = 1, y = 3, z = 7;
   duplicate(x, y, z);
@@ -56,6 +61,9 @@ int main() {
   h = sum<double>(f, g);
   std::cout << k << std::endl;
   std::cout << h << std::endl;
+
+  std::cout << fixed_multiply<int, 2>(10) << "\n";
+  std::cout << fixed_multiply<int, 3>(10) << "\n";
   
   return 0;
 }
