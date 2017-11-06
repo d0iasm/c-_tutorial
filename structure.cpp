@@ -1,6 +1,12 @@
 #include <iostream>
 #include <string>
 
+void duplicate (int& a, int& b, int& c) {
+  a *= 2;
+  b *= 2;
+  c *= 2;
+}
+
 int main() {
   int n = 10;
 
@@ -15,6 +21,10 @@ int main() {
     std::cout << "[" << c << "]";
   }
   std::cout << "\n";
+
+  int x = 1, y = 3, z = 7;
+  duplicate(x, y, z);
+  std::cout << "x=" << x << ", y=" << y << ", z=" << z;
 
   return 0;
 }
