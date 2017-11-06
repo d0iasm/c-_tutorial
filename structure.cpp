@@ -33,6 +33,13 @@ double operate (double a, double b) {
   return (a / b);
 }
 
+template <class T>
+T sum (T a, T b) {
+  T result;
+  result = a + b;
+  return result;
+}
+
 int main() {
   int x = 1, y = 3, z = 7;
   duplicate(x, y, z);
@@ -42,6 +49,13 @@ int main() {
   double c = 5.0, d = 2.0;
   std::cout << operate (a, b) << "\n";
   std::cout << operate (c, d) << "\n";
+
+  int i = 5, j = 6, k;
+  double f = 2.0, g = 0.5, h;
+  k = sum<int>(i, j);
+  h = sum<double>(f, g);
+  std::cout << k << std::endl;
+  std::cout << h << std::endl;
   
   return 0;
 }
