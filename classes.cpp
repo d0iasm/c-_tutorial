@@ -1,4 +1,5 @@
 #include <iostream>
+#include <string>
 
 class Rectangle {
   int width, height;
@@ -60,7 +61,7 @@ template <class T>
 class mypair {
   T a, b;
 public:
-  mypair (T first, T second) {
+  mypair(T first, T second) {
     a = first;
     b = second;
   }
@@ -73,6 +74,15 @@ T mypair<T>::getmax() {
   retval = a > b ? a : b;
   return retval;
 }
+
+class Example {
+  std::string* ptr;
+public:
+  Example() : ptr(new std::string) {}
+  Example(const std::string& str) : ptr(new std::string(str)) {}
+  ~Example() {delete ptr;}
+  const std::string& content() const {return *ptr;}
+};
 
 int main () {
   Rectangle rect(3, 4);
@@ -103,6 +113,10 @@ int main () {
 
   mypair<int> myobj(100, 75);
   std::cout << myobj.getmax() << std::endl;
+
+  Example exa1;
+  Example exa2("Example");
+  std::cout << "exa2's content: " << exa2.content() << std::endl;
 
   return 0;
 }
