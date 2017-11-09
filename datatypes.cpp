@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include <sstream>
 #include <new>
 
 int foo [] = {16, 2, 77, 40, 12071};
@@ -87,8 +88,20 @@ void dynamic_memory () {
       std::cout << p[n] << ",  ";
     }
     delete[] p;
+    std::cout << std::endl;
   }
 }
+
+struct movies_t {
+  std::string title;
+  int year;
+} films [2];
+
+void printmovie (movies_t movie) {
+  std::cout << movie.title;
+  std::cout << " (" << movie.year << ")\n";
+}
+
 
 int main () {
   for (n=0; n<5; ++n) {
@@ -111,6 +124,23 @@ int main () {
   std::cout << n << std::endl;
 
   dynamic_memory();
+
+  int i;
+  movies_t *pmovie;
+  pmovie = films;
+  
+  for (i=0; i<2; i++) {
+    std::cout << "Enter title: ";
+    std::cin >> pmovie->title;
+    std::cout << "Enter year: ";
+    std::cin >> pmovie->year;
+    pmovie++;
+  }
+
+  std::cout << "\nYou have entered these movies:\n";
+  for (i=0; i<2; i++) {
+    printmovie (films[i]);
+  }
   
   return 0;
 }
