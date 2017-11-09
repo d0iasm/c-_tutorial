@@ -1,6 +1,8 @@
 #include <iostream>
 #include <string>
 
+class Square;
+
 class Rectangle {
   int width, height;
 public:
@@ -8,7 +10,8 @@ public:
   Rectangle(int, int);
   int area() {
     return width * height;
-  } 
+  }
+  void convert(Square a);
 };
 
 Rectangle::Rectangle () {
@@ -19,6 +22,19 @@ Rectangle::Rectangle () {
 Rectangle::Rectangle (int x, int y) {
   width = x;
   height = y;
+}
+
+class Square {
+  friend class Rectangle;
+private:
+  int side;
+public:
+  Square(int a) : side(a) {}
+};
+
+void Rectangle::convert(Square a) {
+  width = a.side;
+  height = a.side;
 }
 
 class CVector {
@@ -58,10 +74,10 @@ public:
 };
 
 template <class T>
-class mypair {
+class Mypair {
   T a, b;
 public:
-  mypair(T first, T second) {
+  Mypair(T first, T second) {
     a = first;
     b = second;
   }
@@ -69,7 +85,7 @@ public:
 };
 
 template <class T>
-T mypair<T>::getmax() {
+T Mypair<T>::getmax() {
   T retval;
   retval = a > b ? a : b;
   return retval;
@@ -82,6 +98,30 @@ public:
   Example(const std::string& str) : ptr(new std::string(str)) {}
   ~Example() {delete ptr;}
   const std::string& content() const {return *ptr;}
+};
+
+class Polygon {
+protected:
+  int width, height;
+public:
+  void set_values(int a, int b) {
+    width = a;
+    height = b;
+  }
+};
+
+class Rectangle2: public Polygon {
+public:
+  int area() {
+    return width * height;
+  }
+};
+
+class Triangle: public Polygon {
+public:
+  int area() {
+    return width * height / 2;
+  }
 };
 
 int main () {
@@ -111,12 +151,26 @@ int main () {
   const MyClass hoge(10);
   std::cout << hoge.x << "\n";
 
-  mypair<int> myobj(100, 75);
+  Mypair<int> myobj(100, 75);
   std::cout << myobj.getmax() << std::endl;
 
   Example exa1;
   Example exa2("Example");
   std::cout << "exa2's content: " << exa2.content() << std::endl;
+
+  Rectangle rect2;
+  Square sqr(4);
+  rect2.convert(sqr);
+  std::cout << rect2.area() << std::endl;
+
+  Rectangle2 rect3;
+  Triangle trgl;
+  Polygon* ppoly1 = &rect3;
+  Polygon* ppoly2 = &trgl;
+  ppoly1->set_values(4, 5);
+  ppoly2->set_values(4, 5);
+  std::cout << rect3.area() << "\n";
+  std::cout << trgl.area() << "\n";
 
   return 0;
 }
