@@ -26,6 +26,48 @@ void printstring () {
   std::cout << " from " << ans2 << "!" << std::endl;
 }
 
+void printpointer () {
+  int firstval, secondval;
+  int *mypointer;
+
+  mypointer = &firstval;
+  *mypointer = 10;
+  mypointer = &secondval;
+  *mypointer = 20;
+  std::cout << "first value is " << firstval << "\n";
+  std::cout << "second value is " << secondval << "\n";
+}
+
+void increment_all (int* start, int* stop) {
+  int *current = start;
+  while (current != stop) {
+    ++(*current);
+    ++current;
+  }
+}
+
+void print_all (const int* start, const int* stop) {
+  const int *current = start;
+  while (current != stop) {
+    std::cout << *current << "\n";
+    ++current;
+  }
+}
+
+int addtion (int a, int b) {
+  return a + b;
+}
+
+int subtraction (int a, int b) {
+  return a - b;
+}
+
+int operation (int x, int y, int (*functocall)(int, int)) {
+  int g;
+  g = (*functocall)(x, y);
+  return (g);
+}
+
 int main () {
   for (n=0; n<5; ++n) {
     result += foo[n];
@@ -33,6 +75,18 @@ int main () {
   std::cout << result << std::endl;
 
   printstring();
+  printpointer();
+
+  int numbers[] = {10, 20, 30};
+  increment_all(numbers, numbers+3);
+  print_all(numbers, numbers+3);
+
+  int m, n;
+  int (*minus)(int, int) = subtraction;
+
+  m = operation(7, 5, addtion);
+  n = operation(20, m, minus);
+  std::cout << n << std::endl;
   
   return 0;
 }
